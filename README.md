@@ -1,8 +1,8 @@
 # Facebook Web Crawler
 
 ## 執行環境
-Win10
-Python3.7
+* Win10
+* Python3.7
 
 ## 使用前需安裝模組
 
