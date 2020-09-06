@@ -1,4 +1,5 @@
-from selenium import webdriver  #從library中引入webdriver
+from selenium import webdriver #從library中引入webdriver
+from selenium.webdriver.common.action_chains import ActionChains
 
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -15,6 +16,7 @@ class Click_more_comment():
 				 Btn_check_comment_input,
 				 Btn_below_comment_input,
 				 Btn_below_multiple_commemt_input,
+				 post_location_path_input,
 				 post_num_input,
 				 driver_input
 				 ):
@@ -24,12 +26,17 @@ class Click_more_comment():
 		self.Btn_check_comment=Btn_check_comment_input
 		self.Btn_below_comment=Btn_below_comment_input
 		self.Btn_below_multiple_comment=Btn_below_multiple_commemt_input
+		self.post_location_path=post_location_path_input
 		self.driver=driver_input
 		self.post_num=post_num_input+1
 	def Click_span_all_comment(self):
 		pass
 		for comment_index in range(1,self.post_num):
 			try:
+				post = self.driver.find_element_by_xpath(self.post_location_path.format(comment_index))
+				self.driver.execute_script("arguments[0].scrollIntoView(true);", post)
+				print(comment_index)
+				time.sleep(1)
 				Btns_all_comment = self.driver.find_element_by_xpath(self.Btns_all_comment_path.format(comment_index))
 				Btns_all_comment.click()
 				Btns_span_comment_s1 = self.driver.find_element_by_xpath(self.Btns_span_comment_path_s1.format(comment_index))
@@ -49,15 +56,18 @@ class Click_more_comment():
 		pass
 		for comment_index in range(1,self.post_num):
 			try:
-				print(self.Btn_check_comment.format(comment_index))
-				Btn_check_comment=self.driver.find_element_by_xpath(self.Btn_check_comment.format(comment_index))
-				print("ttttttttttttttttttttttttttttttttttttttttt")
+				post=self.driver.find_element_by_xpath(self.post_location_path.format(comment_index))
+				self.driver.execute_script("arguments[0].scrollIntoView(true);",post)
+				print(comment_index)
+				time.sleep(1)
+				Btn_check_comment = self.driver.find_element_by_xpath(self.Btn_check_comment.format(comment_index))
 				Btn_check_comment.click()
 				print("***************************************")
 				print("Click_check_comment success:{}".format(comment_index))
 				print("***************************************")
-				time.sleep(1)
+
 			except:
+				time.sleep(1)
 				continue
 			# try:
 			# 	Btn_check_comment.send_keys("\n")
@@ -76,19 +86,22 @@ class Click_more_comment():
 		for comment_index in range(1,self.post_num):
 			for respondent_index in range(20):
 				try:
+					post = self.driver.find_element_by_xpath(self.post_location_path.format(comment_index))
+					self.driver.execute_script("arguments[0].scrollIntoView(true);", post)
+					print("comment index:{} respondent_index:{} is ongoing".format(comment_index,respondent_index))
+					time.sleep(1)
 					Btn_below_comment=self.driver.find_element_by_xpath(self.Btn_below_comment.format(comment_index,respondent_index))
 					Btn_below_comment.click()
 					print("***************************************")
-					print("Click_comment_below success")
+					print("Click_comment_below success comment index:{} respondent_index:{}".format(comment_index,respondent_index))
 					print("***************************************")
-					time.sleep(1)
 				except:
 					pass
 				try:
 					Btn_below_comment=self.driver.find_element_by_xpath(self.Btn_below_multiple_comment.format(comment_index,respondent_index))
 					Btn_below_comment.click()
 					print("***************************************")
-					print("Click_MULTIPLE_comment_below success")
+					print("Click_MULTIPLE comment index:{} respondent_index:{}".format(comment_index,respondent_index))
 					print("***************************************")
 					time.sleep(1)
 				except:
@@ -101,23 +114,27 @@ class Check_emoji():
 				 emoji_user_path_input,
 				 emoji_close_path_input,
 				 post_num_input,
-				 driver_input
+				 driver_input,
+				 post_location_path_input,
 				 ):
 		self.emoji_span_path=emoji_span_path_input
 		self.emoji_user_path=emoji_user_path_input
 		self.emoji_close_path=emoji_close_path_input
+		self.post_location_path = post_location_path_input
 		self.post_num = post_num_input+1
 		self.driver=driver_input
 
 	def emoji_user_check(self):
 		respondent_list=[]
-		pass
 		for post_index in range(1,self.post_num):
 			try:
+				post = self.driver.find_element_by_xpath(self.post_location_path.format(post_index))
+				self.driver.execute_script("arguments[0].scrollIntoView(true);", post)
+				print("post:{} is on going".format(post_index))
+				time.sleep(1)
 				test = self.driver.find_element_by_xpath(self.emoji_span_path.format(post_index))
 				test.click()
 				time.sleep(1)
-				print(post_index)
 				print("***************************************")
 				print("Click_span_emoji success 1 stage ")
 				print("***************************************")
@@ -125,9 +142,11 @@ class Check_emoji():
 				continue
 			for respondent_index in range(1,50):
 				try:
+
 					respondent = self.driver.find_element_by_xpath(self.emoji_user_path.format(respondent_index))
-					print(respondent_index)
-					print(respondent_index)
+					self.driver.execute_script("arguments[0].scrollIntoView(true);", respondent)
+					time.sleep(1)
+					print("respondent_index :{}".format(respondent_index))
 					print("***************************************")
 					print("Click_span_emoji success 2 stage")
 					print("***************************************")
@@ -139,14 +158,17 @@ class Check_emoji():
 					break
 		return respondent_list
 class Check_comment():
-	def __init__(self,htmltext_input,post_path_input,respondent_path_input,post_num_input):
+	def __init__(self,htmltext_input,
+				 post_path_input,
+				 respondent_path_input,
+				 post_num_input):
 		self.htmltext=htmltext_input
 		self.post_path=post_path_input
 		self.respondent_path=respondent_path_input
 		self.post_num=post_num_input
 		pass
 	def comment_user_check(self):
-		soup = BeautifulSoup(htmltext,
+		soup = BeautifulSoup(self.htmltext,
 							 'html.parser'
 							 )
 		body = soup.find('body')
@@ -205,11 +227,13 @@ if __name__ == '__main__':
 							Btn_check_comment_input="/html/body/div[1]/div/div[1]/div[1]/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div[4]/div[2]/div/div[2]/div[3]/div/div/div[2]/div[{}]/div/div/div/div/div/div/div/div/div/div[2]/div/div[5]/div/div/div[2]/div[4]/div/div[2]",
 							# 						/html/body/div[1]/div/div[1]/div[1]/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div[4]/div[2]/div/div[2]/div[3]/div/div/div[2]/div[21]/div/div/div/div/div/div/div/div/div/div[2]/div/div[5]/div/div/div[2]/div[4]/div/div[2]
 
-							Btn_below_comment_input="/html/body/div[1]/div/div[1]/div[1]/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div[4]/div[2]/div/div[2]/div[3]/div/div/div[2]"
-											   "/div[{}]/div/div/div/div/div/div/div/div/div/div[2]/div/div[5]/div/div/div[2]/ul/li[{}]/div[2]/div/div/div[2]",
+							Btn_below_comment_input="/html/body/div[1]/div/div[1]/div[1]/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div[4]/div[2]/div/div[2]/div[3]/div/div/div[2]/div[{}]/div/div/div/div/div/div/div/div/div/div[2]/div/div[5]/div/div/div[2]/ul/li[{}]/div[2]/div/div/div[2]",
 
 							Btn_below_multiple_commemt_input="/html/body/div[1]/div/div[1]/div[1]/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div[4]/div[2]/div/div[2]/div[3]/div/div/div[2]"
 															 "/div[{}]/div/div/div/div/div/div/div/div/div/div[2]/div/div[5]/div/div/div[2]/ul/li[{}]/div[2]/div/div/div/div[2]",
+
+							post_location_path_input="/html/body/div[1]/div/div[1]/div[1]/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div[4]/div[2]/div/div[2]/div[3]/div/div/div[2]/div[{}]/div/div/div/div/div/div/div/div/div/div[2]/div/div[2]/div/div[3]/div",
+
 							post_num_input=15,
 
 							driver_input=driver
@@ -233,6 +257,8 @@ if __name__ == '__main__':
 
 							emoji_close_path_input="/html/body/div[1]/div/div[1]/div[1]/div[4]/div/div/div[1]/div/div[2]/div/div/div/div[2]/div",
 
+							post_location_path_input="/html/body/div[1]/div/div[1]/div[1]/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div[4]/div[2]/div/div[2]/div[3]/div/div/div[2]/div[{}]/div/div/div/div/div/div/div/div/div/div[2]/div/div[2]/div/div[3]/div",
+
 							post_num_input=15,
 
 							driver_input=driver
@@ -251,7 +277,6 @@ if __name__ == '__main__':
 	driver.execute_script("window.scroll(0, 0);")
 	time.sleep(1)
 	comment_respondent_list=Comment_test.comment_user_check()
-	driver.execute_script("window.scroll(0, 0);")
+
 	data_analyze(emoji_respondent_list, comment_respondent_list)
-	print("tt")
 
