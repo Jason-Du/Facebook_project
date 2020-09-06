@@ -3,8 +3,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 from bs4 import BeautifulSoup
 import pandas as pd
-from collections import Counter
-from pyquery import PyQuery as pq
+# from collections import Counter
+# from pyquery import PyQuery as pq
 import os
 # browser = webdriver.Chrome()    #開啟chrome browser
 import time
