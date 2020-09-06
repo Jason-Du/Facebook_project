@@ -209,8 +209,8 @@ if __name__ == '__main__':
 	driver.get("http://www.facebook.com")
 	time.sleep(2)
 
-	driver.find_element_by_id("email").send_keys("") # 將USERNAME改為你的臉書帳號
-	driver.find_element_by_id("pass").send_keys("") # 將PASSWORD改為你的臉書密碼
+	driver.find_element_by_id("email").send_keys("dushiun@gmail.com") # 將USERNAME改為你的臉書帳號
+	driver.find_element_by_id("pass").send_keys("jason870225") # 將PASSWORD改為你的臉書密碼
 
 	driver.find_element_by_id("u_0_b").click()
 	time.sleep(2)
