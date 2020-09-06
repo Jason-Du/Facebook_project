@@ -186,8 +186,10 @@ if __name__ == '__main__':
 	driver = webdriver.Firefox(firefox_profile=profile)
 	driver.get("http://www.facebook.com")
 	time.sleep(2)
-	driver.find_element_by_id("email").send_keys("dushiun@gmail") # 將USERNAME改為你的臉書帳號
-	driver.find_element_by_id("pass").send_keys("jason87") # 將PASSWORD改為你的臉書密碼
+
+	driver.find_element_by_id("email").send_keys("dushiun@gmail.com") # 將USERNAME改為你的臉書帳號
+	driver.find_element_by_id("pass").send_keys("jason870225") # 將PASSWORD改為你的臉書密碼
+
 	driver.find_element_by_id("u_0_b").click()
 	time.sleep(2)
 	driver.get('https://www.facebook.com/2017%E4%B8%AD%E5%B1%B1%E9%9B%BB%E6%A9%9FX%E9%AB%98%E9%86%AB%E8%AD%B7%E7%90%86%E8%81%AF%E5%90%88%E5%AE%BF%E7%87%9Fx%E6%A9%9F%E4%B8%8D%E6%93%87%E9%A3%9F%E8%AD%B7%E6%80%95who-208102829724714')
