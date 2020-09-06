@@ -251,4 +251,5 @@ if __name__ == '__main__':
 	comment_respondent_list=Comment_test.comment_user_check()
 	driver.execute_script("window.scroll(0, 0);")
 	data_analyze(emoji_respondent_list, comment_respondent_list)
+	print("tt")
 
