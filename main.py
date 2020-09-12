@@ -84,7 +84,7 @@ class Click_more_comment():
 	def Click_comment_below(self):
 		pass
 		for comment_index in range(1,self.post_num):
-			for respondent_index in range(20):
+			for respondent_index in range(50):
 				try:
 					post = self.driver.find_element_by_xpath(self.post_location_path.format(comment_index))
 					self.driver.execute_script("arguments[0].scrollIntoView(true);", post)
@@ -140,7 +140,7 @@ class Check_emoji():
 				print("***************************************")
 			except:
 				continue
-			for respondent_index in range(1,50):
+			for respondent_index in range(1,60):
 				try:
 
 					respondent = self.driver.find_element_by_xpath(self.emoji_user_path.format(respondent_index))
@@ -209,8 +209,8 @@ if __name__ == '__main__':
 	driver.get("http://www.facebook.com")
 	time.sleep(2)
 
-	driver.find_element_by_id("email").send_keys("") # 將USERNAME改為你的臉書帳號
-	driver.find_element_by_id("pass").send_keys("") # 將PASSWORD改為你的臉書密碼
+	driver.find_element_by_id("email").send_keys("dushiun@gmail.com") # 將USERNAME改為你的臉書帳號
+	driver.find_element_by_id("pass").send_keys("jason870225") # 將PASSWORD改為你的臉書密碼
 
 	driver.find_element_by_id("u_0_b").click()
 	time.sleep(2)
@@ -234,7 +234,7 @@ if __name__ == '__main__':
 
 							post_location_path_input="/html/body/div[1]/div/div[1]/div[1]/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div[4]/div[2]/div/div[2]/div[3]/div/div/div[2]/div[{}]/div/div/div/div/div/div/div/div/div/div[2]/div/div[2]/div/div[3]/div",
 
-							post_num_input=15,
+							post_num_input=105,
 
 							driver_input=driver
 							)
@@ -259,7 +259,7 @@ if __name__ == '__main__':
 
 							post_location_path_input="/html/body/div[1]/div/div[1]/div[1]/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div[4]/div[2]/div/div[2]/div[3]/div/div/div[2]/div[{}]/div/div/div/div/div/div/div/div/div/div[2]/div/div[2]/div/div[3]/div",
 
-							post_num_input=15,
+							post_num_input=105,
 
 							driver_input=driver
 						)
@@ -269,7 +269,7 @@ if __name__ == '__main__':
 
 							   respondent_path_input='span[class="oi732d6d ik7dh3pa d2edcug0 hpfvmrgz qv66sw1b c1et5uql a8c37x1j hop8lmos enqfppq2 e9vueds3 j5wam9gi lrazzd5p oo9gr5id"]',
 
-							   post_num_input=15
+							   post_num_input=105
 
 							)
 
